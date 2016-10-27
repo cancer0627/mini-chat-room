@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Web Socket</title>
+    <link rel="stylesheet" type="text/css" href="base.css">
+    <script src="socket.io.js"></script>
+    <script type="text/javascript" defer src="client.js"></script>
+    <!--<script type="text/javascript" defer src="test.js"></script>-->
+</head>
+<body>
+<div id="main_login">
+    <h5>请输入用户名</h5>
+    <div>
+        <input type="text" id="input_name">
+        <button id="connect_btn">connect</button>
+    </div>
+</div>
+<div id="main_room">
+    <div id="top_room">
+        <span>Chat-Room</span>
+        <div>
+            <span></span>
+            <span>logout</span>
+        </div>
+    </div>
+    <div id="list_room">
+        <div id="p_count"></div>
+        <div id="p_list"></div>
+    </div>
+    <div id="bottom_room">
+        <input id="input_msg" type="text" placeholder="请输入内容，Enter提交">
+        <button id="send_btn">send</button>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,148 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: none;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+}
+
+/*登录界面*/
+#main_login {
+    position: absolute;
+    top: 45%;
+    left: 40%;
+    /*display: none;*/
+}
+
+#main_login > div > input {
+    padding: 5px;
+    border: 1px solid #666;
+    background-color: transparent;
+}
+
+#main_login > div > button {
+    padding: 5px;
+    border: 1px solid #666;
+    background-color: transparent;
+}
+
+/*聊天室界面*/
+#main_room {
+    display: none;
+    width: 100%;
+    height: 100%;
+}
+
+/*顶部*/
+#top_room {
+    width: 98%;
+    position: fixed;
+    top: 0;
+    padding: 1%;
+    background-color: #b5d592;
+}
+
+#top_room > span {
+    font-size: 24px;
+    font-family: "Arial Black";
+}
+
+#top_room > div {
+    float: right;
+}
+
+/*界面*/
+#list_room {
+    margin: 60px 0;
+    padding: 20px;
+    /*min-height: 740px;*/
+    overflow: hidden;
+    /*background-color: aquamarine;*/
+}
+
+#list_room > #p_list > div:last-child {
+    /*margin-bottom: 110px;*/
+}
+
+/*底部*/
+#bottom_room {
+    width: 98%;
+    position: fixed;
+    bottom: 0;
+    padding: 1%;
+    background-color: #b5d592;
+}
+
+#bottom_room > #input_msg {
+    width: 1300px;
+    line-height: 20px;
+    padding: 5px;
+    border: 1px solid #666;
+    background-color: transparent;
+    border-radius: 10px;
+}
+
+#bottom_room > #send_btn {
+    float: right;
+    line-height: 20px;
+    padding: 5px 10px;
+    border: 1px solid #666;
+    background-color: transparent;
+    border-radius: 10px;
+}
+
+/*聊天窗口*/
+
+.action {
+    float: left;
+    width: 100%;
+    margin: 10px 0;
+    text-align: center;
+    /*background-color: #fc8c84;*/
+}
+
+.host {
+    float: left;
+    width: 100%;
+}
+
+.host_name {
+    float: right;
+    color: #fc8c84;
+}
+
+.host_content {
+    float: right;
+    padding: 10px;
+    font-size: 20px;
+    margin-top: 30px;
+    border: 1px solid #666;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #ccc;
+}
+
+.client {
+    float: left;
+    width: 100%;
+}
+
+.client_name {
+    float: left;
+    color: #000;
+}
+
+.client_content {
+    float: left;
+    font-size: 20px;
+    padding: 10px;
+    margin-top: 30px;
+    border: 1px solid #666;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #ccc;
+}
