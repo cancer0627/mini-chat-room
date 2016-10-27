@@ -18,7 +18,7 @@
 
     //
     var flag;
-
+    input_name.value = sessionStorage.username;
     function action(obj) {
         console.log(obj);
         var p_temp = '';
@@ -63,6 +63,7 @@
         init: function () {
             this.socket = io.connect('ws://127.0.0.1:3000');
             this.socket.emit('login', {userid: this.userid, username: this.username});
+
             this.socket.on('login', function (obj) {
                 console.log('on');
                 flag = true;
@@ -82,8 +83,31 @@
         username_submit: function () {
             console.log('username submit');
             //console.log('connect');
-            CHAT.userid = CHAT.genUid();
-            CHAT.username = input_name.value;
+            if (sessionStorage.userid) {
+                CHAT.userid = sessionStorage.userid;
+                CHAT.username = sessionStorage.username;
+            }
+            else {
+                CHAT.userid = CHAT.genUid();
+                CHAT.username = input_name.value;
+                sessionStorage.setItem('userid', this.userid);
+                sessionStorage.setItem('username', this.username);
+            }
+            if (sessionStorage.username == '') {
+                if (input_name.value == '') {
+                    alert('please input id and name!');
+                    location.reload();
+                }
+                else {
+                    CHAT.userid = CHAT.genUid();
+                    CHAT.username = input_name.value;
+                    sessionStorage.setItem('userid', this.userid);
+                    sessionStorage.setItem('username', this.username);
+                }
+            }
+            //localStorage.setItem('userid',this.userid);
+            //localStorage.setItem('username',this.username);
+            console.log(sessionStorage.userid);
             main_login.style.display = 'none';
             main_room.style.display = 'block';
             top_room.childNodes[3].childNodes[1].innerHTML = CHAT.username;
@@ -109,6 +133,9 @@
         CHAT.username_submit();
     };
     top_room.childNodes[3].childNodes[3].onclick = function () {
+
+        sessionStorage.userid = '';
+        sessionStorage.username = '';
         location.reload();
     };
     send_btn.onclick = function () {
