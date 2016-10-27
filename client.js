@@ -18,7 +18,7 @@
 
     //
     var flag;
-    input_name.value = sessionStorage.username;
+    //input_name.value = sessionStorage.username;
     function action(obj) {
         console.log(obj);
         var p_temp = '';
@@ -83,35 +83,22 @@
         username_submit: function () {
             console.log('username submit');
             //console.log('connect');
-            if (sessionStorage.userid) {
-                CHAT.userid = sessionStorage.userid;
-                CHAT.username = sessionStorage.username;
-            }
-            else {
-                CHAT.userid = CHAT.genUid();
-                CHAT.username = input_name.value;
-                sessionStorage.setItem('userid', this.userid);
-                sessionStorage.setItem('username', this.username);
-            }
-            if (sessionStorage.username == '') {
-                if (input_name.value == '') {
-                    alert('please input id and name!');
-                    location.reload();
-                }
-                else {
-                    CHAT.userid = CHAT.genUid();
-                    CHAT.username = input_name.value;
-                    sessionStorage.setItem('userid', this.userid);
-                    sessionStorage.setItem('username', this.username);
-                }
-            }
-            //localStorage.setItem('userid',this.userid);
-            //localStorage.setItem('username',this.username);
-            console.log(sessionStorage.userid);
+            CHAT.userid = this.genUid();
+            CHAT.username = input_name.value;
             main_login.style.display = 'none';
             main_room.style.display = 'block';
             top_room.childNodes[3].childNodes[1].innerHTML = CHAT.username;
-            CHAT.init();
+
+            sessionStorage.setItem('userid', this.userid);
+            sessionStorage.setItem('username', this.username);
+            if (input_name.value == '') {
+                alert('please input name!');
+                main_login.style.display = 'block';
+                main_room.style.display = 'none';
+            }
+            else {
+                CHAT.init();
+            }
         },
         content_submit: function () {
             console.log('content submit');
@@ -122,6 +109,7 @@
                     content: input_msg.value
                 };
                 this.socket.emit('message', o);
+
             }
         },
         genUid: function () {
@@ -153,4 +141,32 @@
             CHAT.username_submit();
         }
     };
+    if (sessionStorage.userid) {
+        CHAT.userid = sessionStorage.userid;
+        CHAT.username = sessionStorage.username;
+        main_login.style.display = 'none';
+        main_room.style.display = 'block';
+        CHAT.username_submit();
+    }
+    //else {
+    //    CHAT.userid = CHAT.genUid();
+    //    CHAT.username = input_name.value;
+    //    sessionStorage.setItem('userid', this.userid);
+    //    sessionStorage.setItem('username', this.username);
+    //}
+    //if (sessionStorage.username == '') {
+    //    if (input_name.value == '') {
+    //        alert('please input name!');
+    //        location.reload();
+    //    }
+    //    else {
+    //        CHAT.userid = CHAT.genUid();
+    //        CHAT.username = input_name.value;
+    //        sessionStorage.setItem('userid', this.userid);
+    //        sessionStorage.setItem('username', this.username);
+    //    }
+    //}
+    ////localStorage.setItem('userid',this.userid);
+    ////localStorage.setItem('username',this.username);
+    //console.log(sessionStorage.userid);
 }(window));
