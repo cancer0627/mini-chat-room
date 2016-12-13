@@ -1,8 +1,4 @@
-/**
- * Created by ThinkPad on 2016/10/25.
- */
 (function () {
-    //
     var connect_btn = document.getElementById('connect_btn');
     var input_name = document.getElementById('input_name');
     var main_login = document.getElementById('main_login');
@@ -16,9 +12,7 @@
     var p_list = document.getElementById('p_list');
     var p_count = document.getElementById('p_count');
 
-    //
     var flag;
-    //input_name.value = sessionStorage.username;
     function action(obj) {
         console.log(obj);
         var p_temp = '';
@@ -61,7 +55,7 @@
         userid: null,
         username: '',
         init: function () {
-            this.socket = io.connect('ws://127.0.0.1:3000');
+            this.socket = io.connect('ws://127.0.0.1:3030');
             this.socket.emit('login', {userid: this.userid, username: this.username});
 
             this.socket.on('login', function (obj) {
@@ -82,7 +76,6 @@
         },
         username_submit: function () {
             console.log('username submit');
-            //console.log('connect');
             CHAT.userid = this.genUid();
             CHAT.username = input_name.value;
             main_login.style.display = 'none';
@@ -148,25 +141,4 @@
         main_room.style.display = 'block';
         CHAT.username_submit();
     }
-    //else {
-    //    CHAT.userid = CHAT.genUid();
-    //    CHAT.username = input_name.value;
-    //    sessionStorage.setItem('userid', this.userid);
-    //    sessionStorage.setItem('username', this.username);
-    //}
-    //if (sessionStorage.username == '') {
-    //    if (input_name.value == '') {
-    //        alert('please input name!');
-    //        location.reload();
-    //    }
-    //    else {
-    //        CHAT.userid = CHAT.genUid();
-    //        CHAT.username = input_name.value;
-    //        sessionStorage.setItem('userid', this.userid);
-    //        sessionStorage.setItem('username', this.username);
-    //    }
-    //}
-    ////localStorage.setItem('userid',this.userid);
-    ////localStorage.setItem('username',this.username);
-    //console.log(sessionStorage.userid);
 }(window));
